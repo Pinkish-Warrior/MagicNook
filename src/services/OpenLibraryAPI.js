@@ -50,7 +50,7 @@ export const searchBook = async (query) => {
                 // Construct the cover URL using the cover_i
                 coverUrl: firstResult.cover_i ? `https://covers.openlibrary.org/b/id/${firstResult.cover_i}-L.jpg` : null,
                 // Note: Full description isn't in search results, would need a second API call (omitted for MVP simplicity)
-                description: 'Description placeholder for search results.',
+                description: 'No description available from search.',
                 isbn: firstResult.isbn ? firstResult.isbn[0] : 'N/A',
             };
         }

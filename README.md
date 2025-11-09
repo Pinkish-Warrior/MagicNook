@@ -23,10 +23,10 @@ Follow these steps to set up and run the Book Buddy MVP locally.
 
 Book Buddy uses Firebase for authentication, database, and file storage (free tier).
 
-1.  **Create a Firebase Project:** Go to the [Firebase Console](https://console.firebase.google.com/) and create a new project.
-2.  **Add a Web App:** In your project, click the `</>` icon to add a web app.
-3.  **Get Configuration:** Firebase will provide a configuration object (`apiKey`, `projectId`, etc.).
-4.  **Update `firebaseConfig.js`:** Open `src/services/firebaseConfig.js` and replace the placeholder values with your new configuration:
+1. **Create a Firebase Project:** Go to the [Firebase Console](https://console.firebase.google.com/) and create a new project.
+2. **Add a Web App:** In your project, click the `</>` icon to add a web app.
+3. **Get Configuration:** Firebase will provide a configuration object (`apiKey`, `projectId`, etc.).
+4. **Update `firebaseConfig.js`:** Open `src/services/firebaseConfig.js` and replace the placeholder values with your new configuration:
 
     ```javascript
     // src/services/firebaseConfig.js
@@ -38,7 +38,7 @@ Book Buddy uses Firebase for authentication, database, and file storage (free ti
     };
     ```
 
-5.  **Enable Firebase Services:**
+5. **Enable Firebase Services:**
 
     * **Authentication:** Go to **Build -> Authentication**, click **Get started**, and enable the **Anonymous** sign-in provider.
     * **Firestore Database:** Go to **Build -> Firestore Database**, click **Create database**, and start in **test mode** (for quick setup).
@@ -62,3 +62,4 @@ npm install
 npm install firebase
 
 npm install -g firebase-tools
+

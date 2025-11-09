@@ -88,6 +88,4 @@ dist
 
 # Firebase
 .firebase/
-firebase.json
 database.rules.json
-storage.rules
