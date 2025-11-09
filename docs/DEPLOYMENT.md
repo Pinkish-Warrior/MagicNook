@@ -55,19 +55,20 @@ Netlify will start building your project. This may take a minute or two. When it
 
 This final, crucial step allows your live website to load images and audio from Firebase Storage. The Firebase CLI does not directly manage these settings; instead, we use `gsutil`, which is part of the Google Cloud SDK.
 
-1.  **Install Google Cloud SDK (includes `gsutil`):**
-    *   Follow the instructions here: [https://cloud.google.com/sdk/docs/install](https://cloud.google.com/sdk/docs/install)
-    *   This is a one-time setup.
+1. **Install Google Cloud SDK (includes `gsutil`):**
+    * Follow the instructions here: [https://cloud.google.com/sdk/docs/install](https://cloud.google.com/sdk/docs/install)
+    * This is a one-time setup.
 
-2.  **Authenticate `gsutil`:**
-    *   After installing the SDK, run `gcloud auth login` in your terminal.
-    *   Then, run `gcloud config set project YOUR_FIREBASE_PROJECT_ID` (replace `YOUR_FIREBASE_PROJECT_ID` with your actual Firebase project ID).
+2. **Authenticate `gsutil`:**
+    * After installing the SDK, run `gcloud auth login` in your terminal.
+    * Then, run `gcloud config set project YOUR_FIREBASE_PROJECT_ID` (replace `YOUR_FIREBASE_PROJECT_ID` with your actual Firebase project ID).
 
-3.  **Find Your Bucket Name:** Look in your `.env.local` file for the value of `VITE_FIREBASE_STORAGE_BUCKET`. The bucket name for the CLI will likely be in the format `<your-project-id>.appspot.com`.
+3. **Find Your Bucket Name:** Look in your `.env.local` file for the value of `VITE_FIREBASE_STORAGE_BUCKET`. The bucket name for the CLI will likely be in the format `<your-project-id>.appspot.com`.
 
-4.  **Check Current CORS Configuration (Optional):**
-    *   Run: `gsutil cors get gs://YOUR_FIREBASE_STORAGE_BUCKET_NAME`
-    *   Replace `YOUR_FIREBASE_STORAGE_BUCKET_NAME` with your actual bucket name.
+4.**Check Current CORS Configuration (Optional):**
+
+    * Run: `gsutil cors get gs://YOUR_FIREBASE_STORAGE_BUCKET_NAME`
+    * Replace `YOUR_FIREBASE_STORAGE_BUCKET_NAME` with your actual bucket name.
 
 5.  **Apply the CORS settings:** In your terminal, inside the `MagicNook` project folder, run the following command. Replace `YOUR_FIREBASE_STORAGE_BUCKET_NAME` with your actual bucket name.
 

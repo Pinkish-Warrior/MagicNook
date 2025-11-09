@@ -1,11 +1,9 @@
 # Netlify configuration for MagicNook
 
-# This section configures the build environment.
-[build.environment]
-  # This tells Netlify's secret scanner to ignore these specific Firebase keys.
-  # These keys are intended to be public for the client-side application to work,
-  # so it is safe to omit them from the scan.
-  SECRETS_SCAN_OMIT_KEYS = [
+[secrets]
+  # A list of secret keys to ignore during secret scanning.
+  # This is useful for keys that are expected to be in the build output.
+  ignore = [
     "VITE_FIREBASE_API_KEY",
     "VITE_FIREBASE_APP_ID",
     "VITE_FIREBASE_AUTH_DOMAIN",
