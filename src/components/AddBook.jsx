@@ -244,7 +244,7 @@ const AddBook = ({ onBookAdded, activeProfile }) => {
                 placeholder="What did you like about this book?"
                 value={bookDetails.summaryText}
                 onChange={handleDetailChange}
-                style={{ width: '95%' }}
+                className="summary-textarea"
             ></textarea>
             
             <p>Or record your voice summary:</p>

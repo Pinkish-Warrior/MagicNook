@@ -97,6 +97,11 @@ button:hover {
     margin-top: 0;
 }
 
+.summary-textarea {
+    width: 100%;
+    box-sizing: border-box; /* Ensures padding and border are included in the width */
+}
+
 /* --- Profile Switcher --- */
 .profile-switcher {
     background: #8ABEB9;
