@@ -7,9 +7,9 @@ import BookCard from './BookCard';
  * Displays the grid of book cards in the personal library.
  * @param {Array} books - List of book objects from Firestore.
  */
-const BookList = ({ books }) => {
+const BookList = ({ books, onDeleteBook }) => {
     return (
-        <section className="book-list-section">
+        <section className="book-list-section" style={{color:"#212121"}}>
             <h2>Your Reading Journey</h2>
             
             {books.length === 0 ? (
@@ -20,7 +20,7 @@ const BookList = ({ books }) => {
                 <div className="book-list-grid">
                     {books.map(book => (
                         // Render a card for each book
-                        <BookCard key={book.id} book={book} />
+                        <BookCard key={book.id} book={book} onDelete={onDeleteBook} />
                     ))}
                 </div>
             )}

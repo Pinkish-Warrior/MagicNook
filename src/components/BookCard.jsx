@@ -7,8 +7,8 @@ import SummaryReader from './SummaryReader';
  * Displays an individual book with its details and summary access.
  * @param {object} book - A single book object from the library.
  */
-const BookCard = ({ book }) => {
-    const { title, author, coverUrl, summaryText, audioUrl, rating = '😊' } = book;
+const BookCard = ({ book, onDelete }) => {
+    const { id, title, author, coverUrl, summaryText, audioUrl, rating = '😊' } = book;
     
     // State to toggle between showing the full summary text or just a snippet
     const [showFullSummary, setShowFullSummary] = useState(false);
@@ -18,6 +18,12 @@ const BookCard = ({ book }) => {
         ? summaryText.substring(0, 80) + (summaryText.length > 80 ? '...' : '') 
         : 'No text summary recorded.';
 
+    const handleDelete = () => {
+        if (window.confirm(`Are you sure you want to delete "${title}"?`)) {
+            onDelete(id, title);
+        }
+    };
+
     return (
         <div className="book-card">
             <img 
@@ -26,14 +32,16 @@ const BookCard = ({ book }) => {
                 className="book-card-cover" 
             />
             
-            <h3>{title}</h3>
-            <p>By: **{author}**</p>
-            <p>Rating: **{rating}**</p>
+            <div className="book-card-info">
+                <h3>{title}</h3>
+                <p>By: <strong>{author}</strong></p>
+                <p>Rating: <strong>{rating}</strong></p>
+            </div>
             
             {/* Summary Display Area */}
             <div className="summary-area">
                 <p className="card-summary-text">
-                    **Your Summary:** {showFullSummary ? summaryText : summarySnippet}
+                    <strong>Your Summary:</strong> {showFullSummary ? summaryText : summarySnippet}
                 </p>
 
                 {summaryText && (
@@ -53,6 +61,10 @@ const BookCard = ({ book }) => {
             
             {/* Text-to-Speech Button */}
             {summaryText && <SummaryReader text={summaryText} />}
+
+            <button onClick={handleDelete} className="delete-button">
+                🗑️ Delete
+            </button>
         </div>
     );
 };

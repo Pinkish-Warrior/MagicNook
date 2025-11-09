@@ -1,9 +1,10 @@
 /* src/styles/App.css */
 
 :root {
-    --color-primary: #3f51b5; /* Indigo */
-    --color-accent: #ff4081;  /* Pink */
-    --color-background: #f0f4f8; /* Light blue/grey */
+    --color-primary: #52357B; /* Dark Purple */
+    --color-accent: #5459AC;  /* Indigo/Blue */
+    --color-background: #52357B; /* Light Cyan/Mint */
+    --color-secondary-background: #648DB3; /* Steel Blue */
     --color-text-dark: #212121;
     --color-text-light: #ffffff;
     --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -27,7 +28,7 @@ body {
 /* --- Global Styles --- */
 
 h1 {
-    color: var(--color-primary);
+    color: var(--color-text-light);
     font-size: 2.5rem;
     text-align: center;
 }
@@ -50,13 +51,13 @@ button {
 }
 
 button:hover {
-    background-color: #f50057; /* Darker pink */
+    background-color: #40448e; /* Darker shade of accent */
     transform: translateY(-1px);
 }
 
 /* --- Add Book Component --- */
 .add-book-container {
-    background: var(--color-text-light);
+    background: #8ABEB9;
     padding: 20px;
     border-radius: 12px;
     box-shadow: var(--card-shadow);
@@ -64,7 +65,7 @@ button:hover {
 }
 
 .add-book-container h2 {
-    color: var(--color-primary);
+    color: var(--color-text-dark);
     font-size: 1.8rem;
     margin-top: 0;
 }
@@ -96,11 +97,38 @@ button:hover {
     margin-top: 0;
 }
 
+/* --- Profile Switcher --- */
+.profile-switcher {
+    background: #8ABEB9;
+    padding: 10px 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    text-align: center;
+    border: 2px solid var(--color-primary);
+}
+.profile-switcher p {
+    margin: 0 0 10px 0;
+    font-weight: bold;
+    color: var(--color-text-dark);
+}
+.profile-button {
+    margin: 5px;
+    background-color: #648DB3; /* Secondary background */
+    border: 2px solid #648DB3;
+}
+.profile-button.active {
+    background-color: var(--color-primary);
+    border-color: var(--color-text-light);
+    transform: scale(1.05);
+}
+
+
 /* --- Library Dashboard --- */
 .library-dashboard {
     text-align: center;
     padding: 15px;
-    background: #e0f7fa; /* Light cyan */
+    background: #8ABEB9;
+    color: var(--color-text-dark);
     border-radius: 12px;
     margin-bottom: 20px;
     border: 2px solid var(--color-primary);
@@ -109,7 +137,7 @@ button:hover {
 .progress-counter {
     font-size: 1.8rem;
     font-weight: bold;
-    color: var(--color-primary);
+    color: var(--color-text-dark);
 }
 
 .book-list-grid {
@@ -121,7 +149,7 @@ button:hover {
 
 /* --- Book Card --- */
 .book-card {
-    background: var(--color-text-light);
+    background: #B7E5CD;
     border-radius: 12px;
     box-shadow: var(--card-shadow);
     padding: 15px;
@@ -140,6 +168,14 @@ button:hover {
     border: 3px solid var(--color-primary);
 }
 
+.book-card-info {
+    margin-bottom: 10px;
+}
+
+.book-card-info h3, .book-card-info p {
+    margin: 4px 0; /* Tighter spacing for the info block */
+}
+
 .card-summary-text {
     font-size: 0.9rem;
     font-style: italic;
@@ -154,12 +190,21 @@ button:hover {
     background-color: #388e3c;
 }
 
+.delete-button {
+    background-color: #f44336; /* Red for delete */
+    margin-top: auto; /* Pushes button to the bottom of the card */
+}
+.delete-button:hover {
+    background-color: #d32f2f;
+}
+
+
 /* --- Audio Recorder & Summary Reader --- */
 .record-button {
-    background-color: #ff9800; /* Orange for record */
+    background-color: var(--color-accent);
 }
 .record-button.recording {
-    background-color: #f44336; /* Red when recording */
+    background-color: var(--color-primary);
     animation: pulse 1s infinite alternate;
 }
 
@@ -179,8 +224,8 @@ button:hover {
     background-color: var(--color-primary);
 }
 
-/* --- Confetti/Badge Animation --- */
-.confetti-overlay {
+/* --- Badge Animation --- */
+.badge-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -191,11 +236,6 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Basic confetti simulation with box-shadow */
-    box-shadow: 
-        0 0 0 1000px red, 100px 100px 0 10px yellow, -50px -50px 0 15px lime,
-        200px 50px 0 12px blue, -150px 150px 0 8px orange;
-    animation: confetti-rain 0.5s ease-out forwards;
 }
 
 .badge-popup {
@@ -212,12 +252,6 @@ button:hover {
 @keyframes pop-in {
     from { transform: scale(0); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
-}
-
-/* Confetti-rain is a simple way to simulate movement */
-@keyframes confetti-rain {
-    0% { transform: translateY(-100%); opacity: 0; }
-    100% { transform: translateY(0); opacity: 1; }
 }
 
 /* --- Accessibility & Mobile-First --- */
@@ -237,4 +271,39 @@ button, input, textarea {
         text-align: center;
         align-items: center;
     }
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* --- Notification Styles --- */
+.notification {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    text-align: center;
+    font-weight: bold;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.notification.success {
+    background-color: #B7E5CD; /* Light green */
+    color: #212121;
+    border: 2px solid #4caf50;
+}
+
+.notification.error {
+    background-color: #ffcdd2; /* Light red */
+    color: #c62828;
+    border: 2px solid #c62828;
 }

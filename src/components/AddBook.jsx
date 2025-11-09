@@ -13,9 +13,10 @@ const DEFAULT_COVER_URL = '/book-buddy-mascot.png';
  * Handles book search, detail input, audio recording, and saving the final book entry.
  * @param {function} onBookAdded - Callback to refresh the main book list.
  */
-const AddBook = ({ onBookAdded }) => {
+const AddBook = ({ onBookAdded, activeProfile }) => {
     const [searchQuery, setSearchQuery] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [notification, setNotification] = useState({ message: '', type: '' }); // For inline notifications
     const [bookDetails, setBookDetails] = useState({
         title: '',
         author: '',
@@ -27,6 +28,12 @@ const AddBook = ({ onBookAdded }) => {
         rating: '⭐️', // Default rating
     });
     const [audioBlob, setAudioBlob] = useState(null); // Local state for the recorded audio data
+
+    // --- Notification Helper ---
+    const showNotification = (message, type) => {
+        setNotification({ message, type });
+        setTimeout(() => setNotification({ message: '', type: '' }), 5000); // Hide after 5 seconds
+    };
 
     // Handle input changes for manual details and text summary
     const handleDetailChange = (e) => {
@@ -50,9 +57,10 @@ const AddBook = ({ onBookAdded }) => {
                 description: data.description || '',
                 isbn: data.isbn || '',
             });
+            showNotification(`Found "${data.title}"!`, 'success');
             console.log("Book data loaded:", data.title);
         } else {
-            alert('Book not found! Please enter details manually.');
+            showNotification('Book not found! Please enter details manually.', 'error');
             setBookDetails({
                 ...bookDetails,
                 title: searchQuery, // Use search term as temporary title
@@ -88,7 +96,7 @@ const AddBook = ({ onBookAdded }) => {
         setIsLoading(true);
 
         if (!bookDetails.title) {
-            alert("Please enter a book title.");
+            showNotification("Please enter a book title.", 'error');
             setIsLoading(false);
             return;
         }
@@ -119,10 +127,10 @@ const AddBook = ({ onBookAdded }) => {
                 audioUrl: finalAudioUrl,
             };
             
-            await addBookToLibrary(finalData);
+            await addBookToLibrary(finalData, activeProfile);
             
             // Success! Reset state and notify parent component
-            alert(`"${bookDetails.title}" added to your library!`);
+            showNotification(`"${bookDetails.title}" added to your library!`, 'success');
             setBookDetails({
                 title: '', author: '', coverUrl: DEFAULT_COVER_URL, description: '', 
                 isbn: '', summaryText: '', audioUrl: '', rating: '⭐️'
@@ -133,7 +141,7 @@ const AddBook = ({ onBookAdded }) => {
             
         } catch (error) {
             console.error("Error saving book:", error);
-            alert("Failed to save the book. Check the console for details.");
+            showNotification("Failed to save the book. See console for details.", 'error');
         } finally {
             setIsLoading(false);
         }
@@ -143,10 +151,20 @@ const AddBook = ({ onBookAdded }) => {
         <form onSubmit={handleSubmit} className="add-book-container">
             <h2>Add a New Book 📖</h2>
 
+            {/* --- Notification Area --- */}
+            {notification.message && (
+                <div className={`notification ${notification.type}`}>
+                    {notification.message}
+                </div>
+            )}
+
             {/* --- Search Section --- */}
-            <div style={{ display: 'flex', gap: '10px' }}>
+            <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                <label htmlFor="search-input" className="visually-hidden">Search by Title or ISBN</label>
                 <input
                     type="text"
+                    id="search-input"
+                    name="search"
                     placeholder="Search by Title or ISBN"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
@@ -168,39 +186,48 @@ const AddBook = ({ onBookAdded }) => {
                     src={bookDetails.coverUrl} 
                     alt="Book Cover" 
                     className="book-preview-img" 
+                    style={{
+                    border: '2px solid #5459AC',  // matches your app's color scheme
+                    borderRadius: '8px',          // optional: adds rounded corners
+                    padding: '4px'               // optional: adds some space between image and border
+                    }}
                 />
                 <div className="book-info">
-                    <label>Title:</label>
+                    <label htmlFor="title-input">Title : </label>
                     <input
                         type="text"
+                        id="title-input"
                         name="title"
                         value={bookDetails.title}
                         onChange={handleDetailChange}
                         required
                     />
-                    <label>Author:</label>
+                    <label htmlFor="author-input"> Author : </label>
                     <input
                         type="text"
+                        id="author-input"
                         name="author"
                         value={bookDetails.author}
                         onChange={handleDetailChange}
                     />
-                    <label>Rating:</label>
-                    <select name="rating" value={bookDetails.rating} onChange={handleDetailChange}>
+                    <br />
+                    <label htmlFor="rating-select"> Rating : </label>
+                    <select id="rating-select" name="rating" style={{backgroundColor:" #5459AC", borderRadius: "5px",}} value={bookDetails.rating} onChange={handleDetailChange}>
                         <option value="⭐️">⭐️ Amazing</option>
                         <option value="🤩">🤩 Great</option>
                         <option value="😊">😊 Good</option>
                     </select>
                     
                     {/* --- Upload Cover --- */}
-                    <label className="file-upload-label">
+                    <label htmlFor="cover-upload-input" className="file-upload-label">
                         <input
                             type="file"
+                            id="cover-upload-input"
                             accept="image/*"
                             onChange={handleCoverUpload}
                             style={{ display: 'none' }}
                         />
-                        <button type="button" onClick={() => document.querySelector('.file-upload-label input').click()} style={{ width: '100%', backgroundColor: '#00bcd4' }}>
+                        <button type="button" onClick={() => document.getElementById('cover-upload-input').click()} style={{ width: '100%', backgroundColor: '#5459AC' }}>
                             📸 Change Cover
                         </button>
                     </label>
@@ -209,17 +236,18 @@ const AddBook = ({ onBookAdded }) => {
             
             {/* --- Child's Summary Section --- */}
             <h3>Your Summary</h3>
-            <label>Type your thoughts:</label>
+            <label htmlFor="summary-textarea">Type your thoughts:</label>
             <textarea
+                id="summary-textarea"
                 name="summaryText"
                 rows="3"
                 placeholder="What did you like about this book?"
                 value={bookDetails.summaryText}
                 onChange={handleDetailChange}
-                style={{ width: '98%' }}
+                style={{ width: '95%' }}
             ></textarea>
             
-            <label>Or record your voice summary:</label>
+            <p>Or record your voice summary:</p>
             <AudioRecorder onRecordingComplete={handleAudioComplete} />
             
             {/* --- Final Submit Button --- */}
