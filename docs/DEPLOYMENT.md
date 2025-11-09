@@ -4,8 +4,8 @@ This guide provides simple steps to deploy your React application to the web for
 
 ## Prerequisites
 
-1.  **A Netlify Account:** [Sign up for a free account](https://app.netlify.com/signup) if you don't have one.
-2.  **Code on GitHub/GitLab:** Your project code should be in a repository on a service like GitHub.
+1. **A Netlify Account:** [Sign up for a free account](https://app.netlify.com/signup) if you don't have one.
+2. **Code on GitHub/GitLab:** Your project code should be in a repository on a service like GitHub.
 
 ---
 
@@ -27,8 +27,8 @@ After connecting, you will see a list of your Git repositories. Find and select 
 
 Netlify is smart and will likely detect that you are using Vite. It should automatically fill in the correct settings. If not, or to verify, use the following:
 
-*   **Build command:** `npm run build`
-*   **Publish directory:** `dist`
+* **Build command:** `npm run build`
+* **Publish directory:** `dist`
 
 ![Netlify Build Settings](https://i.imgur.com/aC3yB3y.png)
 
@@ -36,12 +36,12 @@ Netlify is smart and will likely detect that you are using Vite. It should autom
 
 This is the most important step to connect your live app to Firebase.
 
-1.  Before deploying, click **"Show advanced"**, then **"New variable"**.
-2.  You will now copy the keys and values from your local `.env.local` file into Netlify's environment variables.
-3.  For each line in your `.env.local` file, create a new variable in Netlify.
+1. Before deploying, click **"Show advanced"**, then **"New variable"**.
+2. You will now copy the keys and values from your local `.env.local` file into Netlify's environment variables.
+3. For each line in your `.env.local` file, create a new variable in Netlify.
 
-    *   **Key:** `VITE_FIREBASE_API_KEY`
-    *   **Value:** `AIzaSy...` (your actual key)
+    * **Key:** `VITE_FIREBASE_API_KEY`
+    * **Value:** `AIzaSy...` (your actual key)
 
     Repeat this for all the `VITE_FIREBASE_...` variables.
 
@@ -57,9 +57,9 @@ Netlify will start building your project. This may take a minute or two. When it
 
 This final, crucial step allows your live website to load images and audio from Firebase Storage.
 
-1.  **Find Your Bucket Name:** Look in your `.env.local` file. Your bucket name is the value for `VITE_FIREBASE_STORAGE_BUCKET`.
+1. **Find Your Bucket Name:** Look in your `.env.local` file. Your bucket name is the value for `VITE_FIREBASE_STORAGE_BUCKET`.
 
-2.  **Apply the CORS settings:** In your terminal, inside the `MagicNook` project folder, run the following command. Replace `YOUR_BUCKET_NAME_HERE` with the value from your `.env.local` file.
+2. **Apply the CORS settings:** In your terminal, inside the `MagicNook` project folder, run the following command. Replace `YOUR_BUCKET_NAME_HERE` with the value from your `.env.local` file.
 
     ```bash
     firebase storage:buckets:set-cors cors.json --bucket YOUR_BUCKET_NAME_HERE
@@ -69,7 +69,7 @@ This final, crucial step allows your live website to load images and audio from 
 
 ---
 
-## That's It!
+## That's It
 
 Netlify will give you a random URL (like `adjective-noun-12345.netlify.app`) where you can see your live application. You can customize this URL later in "Site settings".
 
