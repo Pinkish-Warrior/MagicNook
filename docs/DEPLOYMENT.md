@@ -61,9 +61,9 @@ This final, crucial step allows your live website to load images and audio from 
 
 2.  **Authenticate `gsutil`:**
     *   After installing the SDK, run `gcloud auth login` in your terminal.
-    *   Then, run `gcloud config set project YOUR_FIREBASE_PROJECT_ID` (replace `YOUR_FIREBASE_PROJECT_ID` with your Firebase project ID, e.g., `magicnook-new`).
+    *   Then, run `gcloud config set project YOUR_FIREBASE_PROJECT_ID` (replace `YOUR_FIREBASE_PROJECT_ID` with your actual Firebase project ID).
 
-3.  **Find Your Bucket Name:** Look in your `.env.local` file. Your bucket name is the value for `VITE_FIREBASE_STORAGE_BUCKET` (e.g., `magicnook-new.appspot.com`).
+3.  **Find Your Bucket Name:** Look in your `.env.local` file for the value of `VITE_FIREBASE_STORAGE_BUCKET`. The bucket name for the CLI will likely be in the format `<your-project-id>.appspot.com`.
 
 4.  **Check Current CORS Configuration (Optional):**
     *   Run: `gsutil cors get gs://YOUR_FIREBASE_STORAGE_BUCKET_NAME`
