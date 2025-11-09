@@ -53,16 +53,28 @@ Once the build settings and environment variables are configured, click the **"D
 
 Netlify will start building your project. This may take a minute or two. When it's done, your site will be live!
 
-### Step 7: Configure Firebase Storage CORS
+### Step 7: Configure Firebase Storage CORS (using `gsutil`)
 
-This final, crucial step allows your live website to load images and audio from Firebase Storage.
+This final, crucial step allows your live website to load images and audio from Firebase Storage. The Firebase CLI does not directly manage these settings; instead, we use `gsutil`, which is part of the Google Cloud SDK.
 
-1. **Find Your Bucket Name:** Look in your `.env.local` file. Your bucket name is the value for `VITE_FIREBASE_STORAGE_BUCKET`.
+1.  **Install Google Cloud SDK (includes `gsutil`):**
+    *   Follow the instructions here: [https://cloud.google.com/sdk/docs/install](https://cloud.google.com/sdk/docs/install)
+    *   This is a one-time setup.
 
-2. **Apply the CORS settings:** In your terminal, inside the `MagicNook` project folder, run the following command. Replace `YOUR_BUCKET_NAME_HERE` with the value from your `.env.local` file.
+2.  **Authenticate `gsutil`:**
+    *   After installing the SDK, run `gcloud auth login` in your terminal.
+    *   Then, run `gcloud config set project YOUR_FIREBASE_PROJECT_ID` (replace `YOUR_FIREBASE_PROJECT_ID` with your Firebase project ID, e.g., `magicnook-new`).
+
+3.  **Find Your Bucket Name:** Look in your `.env.local` file. Your bucket name is the value for `VITE_FIREBASE_STORAGE_BUCKET` (e.g., `magicnook-new.appspot.com`).
+
+4.  **Check Current CORS Configuration (Optional):**
+    *   Run: `gsutil cors get gs://YOUR_FIREBASE_STORAGE_BUCKET_NAME`
+    *   Replace `YOUR_FIREBASE_STORAGE_BUCKET_NAME` with your actual bucket name.
+
+5.  **Apply the CORS settings:** In your terminal, inside the `MagicNook` project folder, run the following command. Replace `YOUR_FIREBASE_STORAGE_BUCKET_NAME` with your actual bucket name.
 
     ```bash
-    firebase storage:buckets:set-cors cors.json --bucket YOUR_BUCKET_NAME_HERE
+    gsutil cors set cors.json gs://YOUR_FIREBASE_STORAGE_BUCKET_NAME
     ```
 
     This command uses the `cors.json` file in your project to tell Firebase that it's okay to serve files to your Netlify website URL.
