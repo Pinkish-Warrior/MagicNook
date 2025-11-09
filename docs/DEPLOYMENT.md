@@ -30,7 +30,7 @@ Netlify is smart and will likely detect that you are using Vite. It should autom
 * **Build command:** `npm run build`
 * **Publish directory:** `dist`
 
-![Netlify Build Settings](https://i.imgur.com/aC3yB3y.png)
+
 
 ### Step 5: Add Your Environment Variables
 
@@ -41,11 +41,9 @@ This is the most important step to connect your live app to Firebase.
 3. For each line in your `.env.local` file, create a new variable in Netlify.
 
     * **Key:** `VITE_FIREBASE_API_KEY`
-    * **Value:** `AIzaSy...` (your actual key)
+    * **Value:** (your actual key from Firebase)
 
     Repeat this for all the `VITE_FIREBASE_...` variables.
-
-![Netlify Environment Variables](https://i.imgur.com/yGkG6p9.png)
 
 ### Step 6: Deploy Your Site
 
