@@ -69,6 +69,6 @@ npm install -g firebase-tools
 
 For more detailed information about the project, see the following documents:
 
-* **[Next Steps](./Next_Steps.md):** A list of proposed future improvements and feature ideas.
+*   **[Next Steps](./docs/Next_Steps.md):** A list of proposed future improvements and feature ideas.
 
-* **[Deployment Guide](./DEPLOYMENT.md):** Step-by-step instructions for deploying the application.
+*   **[Deployment Guide](./docs/DEPLOYMENT.md):** Step-by-step instructions for deploying the application.
