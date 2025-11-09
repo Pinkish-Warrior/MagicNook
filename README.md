@@ -69,6 +69,8 @@ npm install -g firebase-tools
 
 For more detailed information about the project, see the following documents:
 
-*   **[Next Steps](./docs/Next_Steps.md):** A list of proposed future improvements and feature ideas.
-
-*   **[Deployment Guide](./docs/DEPLOYMENT.md):** Step-by-step instructions for deploying the application.
+* **[Next Steps](./docs/Next_Steps.md):** A list of proposed future improvements and feature ideas.
+* **[Deployment Guide](./docs/DEPLOYMENT.md):** Step-by-step instructions for deploying the application.
+* **[Original Prompt](./docs/GEMINI.md):** The original project prompt and requirements.
+* **[Development Steps](./docs/STEPS.md):** The initial development steps chosen for the project.
+* **[Component Tree](./docs/TREE.md):** An overview of the component structure.
