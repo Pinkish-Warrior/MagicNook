@@ -10,7 +10,7 @@ This document outlines the recommended next steps for improving the MagicNook "B
 
 **Solution:** Create and deploy the following rule files.
 
-**1\. Create `firestore.rules`**
+**1\. Create `firestore.rules` ✅**
 
 Create a new file named `firestore.rules` in the project root (`HUB/MagicNook/`).
 
@@ -31,7 +31,7 @@ service cloud.firestore {
 }
 ```
 
-**2\. Create `storage.rules`**
+**2\. Create `storage.rules` ✅**
 
 Create a new file named `storage.rules` in the project root.
 
@@ -47,7 +47,7 @@ service firebase.storage {
 }
 ```
 
-**3\. Create `firebase.json`**
+**3\. Create `firebase.json` ✅**
 
 Create a new file named `firebase.json` in the project root to tell Firebase where to find your rules.
 
@@ -62,9 +62,10 @@ Create a new file named `firebase.json` in the project root to tell Firebase whe
 }
 ```
 
-**4\. Deploy the Rules**
+**4\. Deploy the Rules ✅**
 
 Run the following command from your terminal in the `HUB/MagicNook` directory. You must have the Firebase CLI installed (`npm install -g firebase-tools`).
+*(Instructions for deployment are now in `DEPLOYMENT.md`)*
 
 ```bash
 firebase deploy --only firestore,storage
@@ -72,13 +73,13 @@ firebase deploy --only firestore,storage
 
 ---
 
-### 🟡 Priority 2: Enhance User Experience (UX)
+## 🟡 Priority 2: Enhance User Experience (UX)
 
 **Problem:** The app uses `alert()` for notifications, which freezes the browser and provides a poor user experience.
 
 **Solution:**
 
-1. **Replace `alert()` with Inline Notifications:**
+**1\. Replace `alert()` with Inline Notifications ✅**
     * In `AddBook.jsx`, instead of `alert('Book not found!')` or `alert('Failed to save...')`, create a state variable like `const [notification, setNotification] = useState({ message: '', type: '' });`.
     * Display this notification in the UI. For example:
 
@@ -92,7 +93,7 @@ firebase deploy --only firestore,storage
 
     * Style the `.notification.error` and `.notification.success` classes in `App.css`.
 
-2. **Improve Confetti Animation:**
+**2\. Improve Confetti Animation ✅**
     * The current CSS `box-shadow` confetti is a clever placeholder. For a much better effect, consider a lightweight library.
     * Install it: `npm install react-confetti`
     * In `ConfettiBadge.jsx`, use it like this:
@@ -106,9 +107,9 @@ firebase deploy --only firestore,storage
 
 ---
 
-#### 🔵 Priority 3: Code Quality & New Features
+## 🔵 Priority 3: Code Quality & New Features
 
-**1\. Add "Delete Book" Functionality**
+**1\. Add "Delete Book" Functionality ✅**
 
 * **`FirestoreService.js`**: Add a `deleteBook` function.
 
