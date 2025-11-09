@@ -73,6 +73,7 @@ web_modules/
 .env.test.local
 .env.production.local
 .env.development.local
+.env.example
 
 # Vite local development server environments
 .env.development
