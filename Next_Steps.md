@@ -80,24 +80,15 @@ firebase deploy --only firestore,storage
 **Solution:**
 
 **1\. Replace `alert()` with Inline Notifications ✅**
-    * In `AddBook.jsx`, instead of `alert('Book not found!')` or `alert('Failed to save...')`, create a state variable like `const [notification, setNotification] = useState({ message: '', type: '' });`.
-    * Display this notification in the UI. For example:
 
-        ```jsx
-        {notification.message && (
-          <div className={`notification ${notification.type}`}>
-            {notification.message}
-          </div>
-        )}
-        ```
+* In `AddBook.jsx`, instead of `alert('Book not found!')` or `alert ('Failed to save...')`, create a state variable like `const [notification, setNotification] = useState({ message: '', type: '' });`.
 
-    * Style the `.notification.error` and `.notification.success` classes in `App.css`.
+* Display this notification in the UI. For example:
 
 **2\. Improve Confetti Animation ✅**
-    * The current CSS `box-shadow` confetti is a clever placeholder. For a much better effect, consider a lightweight library.
-    * Install it: `npm install react-confetti`
-    * In `ConfettiBadge.jsx`, use it like this:
-
+    *The current CSS `box-shadow` confetti is a clever placeholder. For a much better effect consider a lightweight library.*
+    - Install it: `npm install react-confetti`
+    - In `ConfettiBadge.jsx`, use it like this:
         ```jsx
         import Confetti from 'react-confetti';
         // ...
@@ -132,3 +123,4 @@ firebase deploy --only firestore,storage
   * Start by renaming `main.jsx` to `main.tsx` and `App.jsx` to `App.tsx`.
   * Install necessary types: `npm install --save-dev @types/node`
   * Gradually add types to your components' props and state.
+  
