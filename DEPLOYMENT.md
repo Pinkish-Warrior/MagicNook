@@ -53,6 +53,20 @@ Once the build settings and environment variables are configured, click the **"D
 
 Netlify will start building your project. This may take a minute or two. When it's done, your site will be live!
 
+### Step 7: Configure Firebase Storage CORS
+
+This final, crucial step allows your live website to load images and audio from Firebase Storage.
+
+1.  **Find Your Bucket Name:** Look in your `.env.local` file. Your bucket name is the value for `VITE_FIREBASE_STORAGE_BUCKET`.
+
+2.  **Apply the CORS settings:** In your terminal, inside the `MagicNook` project folder, run the following command. Replace `YOUR_BUCKET_NAME_HERE` with the value from your `.env.local` file.
+
+    ```bash
+    firebase storage:buckets:set-cors cors.json --bucket YOUR_BUCKET_NAME_HERE
+    ```
+
+    This command uses the `cors.json` file in your project to tell Firebase that it's okay to serve files to your Netlify website URL.
+
 ---
 
 ## That's It!
