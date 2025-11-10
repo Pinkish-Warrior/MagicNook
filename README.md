@@ -1,4 +1,4 @@
-# 📚 MagicNook - Book Buddy
+# 📚 [MagicNook](https://magicnook.netlify.app/) - Book Buddy
 
 A free, child-friendly web application built with React and Firebase to encourage reading and allow children to record and track summaries of the books they've read.
 
@@ -7,7 +7,7 @@ A free, child-friendly web application built with React and Firebase to encourag
 * **Book Search:** Find books quickly by Title or ISBN using the **Open Library API**.
 * **Voice Summaries:** Record summaries using the **MediaRecorder API** and store them in **Firebase Storage**.
 * **Read Aloud:** Hear book descriptions and summaries using the **Web Speech API (TTS)**.
-* **Personal Library:** A colorful dashboard showing progress and book cards.
+* **Personal Library:** A colourful dashboard showing progress and book cards.
 * **Gamification:** Confetti/Badge animations upon adding a new book!
 
 ## 🚀 Getting Started
