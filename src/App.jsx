@@ -15,8 +15,17 @@ function App() {
     const [books, setBooks] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [isNewBookAdded, setIsNewBookAdded] = useState(false);
-    const [activeProfile, setActiveProfile] = useState(profiles[0]); // Default to the first profile
+    const [activeProfile, setActiveProfile] = useState(() => {
+        // Get the saved profile from localStorage, or default to the first one
+        const savedProfile = localStorage.getItem('activeProfile');
+        return savedProfile && profiles.includes(savedProfile) ? savedProfile : profiles[0];
+    });
     const [notification, setNotification] = useState({ message: '', type: '' });
+
+    // Save the active profile to localStorage whenever it changes
+    useEffect(() => {
+        localStorage.setItem('activeProfile', activeProfile);
+    }, [activeProfile]);
 
     // --- Notification Helper ---
     const showNotification = (message, type) => {
