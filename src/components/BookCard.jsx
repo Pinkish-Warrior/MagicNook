@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import SummaryReader from './SummaryReader';
+import defaultCover from '../assets/pod-book-printing-service.png'; // Import the image
 
 /**
  * Displays an individual book with its details and summary access.
@@ -27,7 +28,7 @@ const BookCard = ({ book, onDelete }) => {
     return (
         <div className="book-card">
             <img 
-                src={coverUrl || '/book-buddy-mascot.png'} // Use a default image if none found
+                src={coverUrl || defaultCover} // Use the imported image as a fallback
                 alt={`Cover of ${title}`} 
                 className="book-card-cover" 
             />

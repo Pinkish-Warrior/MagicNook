@@ -5,9 +5,10 @@ import { searchBook } from '../services/OpenLibraryAPI';
 import { uploadFile } from '../services/StorageService';
 import { addBookToLibrary } from '../services/FirestoreService';
 import AudioRecorder from './AudioRecorder';
+import defaultCover from '../assets/pod-book-printing-service.png'; // Import the image
 
-// Placeholder image if a book cover isn't found
-const DEFAULT_COVER_URL = '/book-buddy-mascot.png';
+// Use the imported image as the default
+const DEFAULT_COVER_URL = defaultCover;
 
 /**
  * Handles book search, detail input, audio recording, and saving the final book entry.
