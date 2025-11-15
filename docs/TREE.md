@@ -1,26 +1,39 @@
 # TREE
 
 ```plaintext
-book-buddy-mvp/
+MagicNook/
+├── .env.local
+├── .gitignore
+├── changes.md
+├── cors.json
+├── firebase.json
+├── firestore.rules
+├── index.html
+├── netlify.toml
+├── package-lock.json
+├── package.json
+├── README.md
+├── storage.rules
+├── vite.config.js
 ├── public/
-│   ├── index.html
-│   └── book-buddy-mascot.png
-├── src/
-│   ├── components/
-│   │   ├── AddBook.jsx           // Handles book search, camera, upload
-│   │   ├── BookCard.jsx          // Displays book in the library
-│   │   ├── BookList.jsx          // Main library view
-│   │   ├── AudioRecorder.jsx     // MediaRecorder implementation
-│   │   ├── SummaryReader.jsx     // Web Speech API TTS
-│   │   └── ConfettiBadge.jsx     // Animation component
-│   ├── services/
-│   │   ├── firebaseConfig.js     // Firebase initialization
-│   │   ├── OpenLibraryAPI.js     // Book fetching logic
-│   │   ├── FirestoreService.js   // Firestore CRUD operations
-│   │   └── StorageService.js     // Firebase Storage operations
-│   ├── styles/
-│   │   └── App.css               // Global styles
-│   ├── App.jsx                   // Main component and routing (simple state management)
-│   └── main.jsx                  // React entry point
-└── README.md
+│   └── favicon.svg
+└── src/
+    ├── App.jsx
+    ├── main.jsx
+    ├── assets/
+    │   └── pod-book-printing-service.png
+    ├── components/
+    │   ├── AddBook.jsx
+    │   ├── AudioRecorder.jsx
+    │   ├── BookCard.jsx
+    │   ├── BookList.jsx
+    │   ├── ConfettiBadge.jsx
+    │   └── SummaryReader.jsx
+    ├── services/
+    │   ├── firebaseConfig.js
+    │   ├── FirestoreService.js
+    │   ├── OpenLibraryAPI.js
+    │   └── StorageService.js
+    └── styles/
+        └── App.css
 ```
