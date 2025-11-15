@@ -18,6 +18,7 @@ const ConfettiBadge = ({ isNewBook }) => {
                 height={height}
                 recycle={false}
                 numberOfPieces={200}
+                style={{ zIndex: 2000 }}
             />
             <div className="badge-overlay">
                 <div className="badge-popup">
