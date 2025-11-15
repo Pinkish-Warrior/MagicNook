@@ -80,3 +80,13 @@ To allow a parent/guardian to create a single account, manage multiple child pro
 ## Next Steps
 
 Once this plan is approved, I will begin implementing Phase 1.
+
+## Estimated Timeline
+
+*   **Phase 1: Authentication Backend & Basic UI:** 6-9 hours
+*   **Phase 2: Dynamic Profile Management:** 8-10 hours
+*   **Phase 3: Connecting Books to the New Structure:** 2-4 hours
+
+**Total Estimated Implementation Time: 16-23 hours**
+
+*This is an estimate and does not account for unforeseen issues or extensive UI/UX polishing.*
